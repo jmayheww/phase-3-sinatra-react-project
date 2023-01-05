@@ -8,7 +8,7 @@ puts '🌱 Seeding spices...'
 
 5.times do
   # create random user names
-  user = User.create(
+  User.create(
     name: Faker::Name.name
   )
 
