@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_05_045056) do
+ActiveRecord::Schema.define(version: 2023_01_05_050112) do
 
-  create_table "travel_plans", force: :cascade do |t|
+  create_table "trips", force: :cascade do |t|
     t.string "title"
     t.integer "budget"
     t.datetime "start_date"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 2023_01_05_045056) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users_trips", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "trip_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
