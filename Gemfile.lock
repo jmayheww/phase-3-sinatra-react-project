@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 0d2fe5909206ea684579b0cad780be1d0a365a05
+  branch: main
+  specs:
+    faker (3.1.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -50,7 +58,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     require_all (3.0.0)
-    rerun (0.13.1)
+    rerun (0.14.0)
       listen (~> 3.0)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
@@ -93,6 +101,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 6.1)
   database_cleaner (~> 2.0)
+  faker!
   pry (~> 0.14.1)
   rack-contrib (~> 2.3)
   rack-cors (~> 1.1)
