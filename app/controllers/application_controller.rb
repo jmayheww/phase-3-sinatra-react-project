@@ -10,4 +10,9 @@ class ApplicationController < Sinatra::Base
     trips = Trip.show_recently_active_trips.limit(10)
     trips.to_json
   end
+
+  get '/trips/:id' do
+    trip = Trip.find(params[:id])
+    trip.to_json
+  end
 end
