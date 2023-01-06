@@ -8,11 +8,11 @@ class ApplicationController < Sinatra::Base
 
   get '/trips' do
     trips = Trip.show_recently_active_trips.limit(10)
-    trips.to_json
+    trips.to_json(include: { users_trips: { include: :user } })
   end
 
   get '/trips/:id' do
     trip = Trip.find(params[:id])
-    trip.to_json
+    trip.to_json(include: :users)
   end
 end
