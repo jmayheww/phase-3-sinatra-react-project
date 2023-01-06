@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     all.map(&:name)
   end
 
-  def self.all_user_names_alphabetical
+  def self.all_names_alphabetical
     all_user_names.sort
   end
 
