@@ -8,6 +8,10 @@ class Trip < ActiveRecord::Base
     all.map(&:title)
   end
 
+  def self.show_recently_active_trips
+    all.order(:updated_at)
+  end
+
   def self.show_trip_titles_by_start_date
     all.order(:start_date).map(&:title)
   end
@@ -31,6 +35,8 @@ class Trip < ActiveRecord::Base
   def self.most_luxurious
     where(budget: highest_budget)
   end
+
+  # instance methods
 
   def all_participating_users
     users.all.map(&:name)
