@@ -12,5 +12,27 @@ class Trip < ActiveRecord::Base
     all.order(:start_date).map(&:title)
   end
 
+  def self.find_trip_by_budget(budget)
+    where(budget: budget)
+  end
 
+  def self.lowest_budget
+    minimum(:budget)
+  end
+
+  def self.highest_budget
+    maximum(:budget)
+  end
+
+  def self.most_affordable
+    where(budget: lowest_budget)
+  end
+
+  def self.most_luxurious
+    where(budget: highest_budget)
+  end
+
+  def all_participating_users
+    users.all.map(&:name)
+  end
 end
