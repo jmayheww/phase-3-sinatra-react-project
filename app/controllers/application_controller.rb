@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/trips' do
-    Trip.all.to_json
+    trips = Trip.show_recently_active_trips.limit(10)
+    trips.to_json
   end
 end

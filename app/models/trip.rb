@@ -9,7 +9,7 @@ class Trip < ActiveRecord::Base
   end
 
   def self.show_recently_active_trips
-    all.order(:updated_at)
+    all.order(updated_at: :desc)
   end
 
   def self.show_trip_titles_by_start_date
