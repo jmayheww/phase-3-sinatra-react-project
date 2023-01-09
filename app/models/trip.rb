@@ -16,8 +16,8 @@ class Trip < ActiveRecord::Base
     all.order(:start_date).map(&:title)
   end
 
-  def self.show_all_unique_user_trips
-    all.map(&:users).uniq
+  def self.show_all_unique_users
+    all.map(&:users)
   end
 
   def self.find_trip_by_budget(budget)
