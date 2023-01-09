@@ -1,6 +1,6 @@
 class Trip < ActiveRecord::Base
   has_many :users_trips
-  has_many :users, through: :users_trips
+  has_many :users, -> { distinct }, through: :users_trips
 
   # class methods
 
@@ -14,6 +14,10 @@ class Trip < ActiveRecord::Base
 
   def self.show_trip_titles_by_start_date
     all.order(:start_date).map(&:title)
+  end
+
+  def self.show_all_unique_user_trips
+    all.map(&:users).uniq
   end
 
   def self.find_trip_by_budget(budget)
@@ -38,7 +42,7 @@ class Trip < ActiveRecord::Base
 
   # instance methods
 
-  def all_participating_users
+  def participating_users
     users.all.map(&:name)
   end
 end

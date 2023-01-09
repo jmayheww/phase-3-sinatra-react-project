@@ -13,6 +13,6 @@ class ApplicationController < Sinatra::Base
 
   get '/trips/:id' do
     trip = Trip.find(params[:id])
-    trip.to_json(include: :users)
+    trip.to_json(include: { users_trips: { include: :user } })
   end
 end
