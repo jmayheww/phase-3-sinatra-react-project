@@ -13,6 +13,6 @@ class ApplicationController < Sinatra::Base
 
   get '/trips/:id' do
     trip = Trip.find(params[:id])
-    trip.to_json
+    trip.to_json(only: %i[title budget start_date end_date img id], methods: [:participating_users])
   end
 end
