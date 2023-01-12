@@ -13,7 +13,7 @@ puts '🌱 Seeding spices...'
   )
 
   trip = Trip.create(
-    title: Faker::Lorem.words,
+    title: Faker::Address.city,
     budget: rand(0..100),
     start_date: Faker::Date.between(from: '2023-01-01', to: '2023-01-05'),
     end_date: Faker::Date.between(from: '2023-01-10', to: '2023-01-20'),
