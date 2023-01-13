@@ -8,11 +8,15 @@ class ApplicationController < Sinatra::Base
 
   get '/trips' do
     trips = Trip.show_recently_active_trips.limit(10)
-    trips.to_json(only: %i[title budget start_date end_date img id], methods: [:participating_users])
+    trips.to_json(only: %i[id img title budget start_date end_date], include: {
+                    users_trips: { only: %i[created_at updated_at], include: :user }
+                  })
   end
 
   get '/trips/:id' do
     trip = Trip.find(params[:id])
-    trip.to_json(only: %i[title budget start_date end_date img id], methods: [:participating_users])
+    trip.to_json(only: %i[title budget start_date end_date img id], include: {
+                   users_trips: { only: %i[created_at updated_at], include: :user }
+                 })
   end
 end
