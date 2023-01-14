@@ -42,6 +42,10 @@ class Trip < ActiveRecord::Base
 
   # instance methods
 
+  def users_trips_by_creation
+    users_trips.order(created_at: :desc)
+  end
+
   def participating_users
     users.all.map(&:name)
   end

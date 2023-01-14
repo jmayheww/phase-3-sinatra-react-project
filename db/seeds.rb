@@ -5,8 +5,9 @@ UsersTrip.destroy_all
 puts '🌱 Seeding spices...'
 
 # Seed your database here
+num_users = 7
 
-5.times do
+num_users.times do
   # create random user names
   User.create(
     name: Faker::Name.name
@@ -21,10 +22,9 @@ puts '🌱 Seeding spices...'
   )
 
   # create between 1 and 3 trips for each user
-
-  rand(1..4).times do
+  (1..num_users).to_a.each do |item|
     UsersTrip.create(
-      user_id: rand(1..5),
+      user_id: item,
       trip_id: trip.id
     )
   end
