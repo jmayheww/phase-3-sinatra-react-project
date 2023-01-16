@@ -26,4 +26,12 @@ class ApplicationController < Sinatra::Base
     trip_to_delete.destroy
     trip_to_delete.to_json
   end
+
+  post '/userstrips' do
+    userstrip = UsersTrip.create(
+      user_id: params[:user_id],
+      trip_id: params[:trip_id]
+    )
+    userstrip.to_json
+  end
 end
