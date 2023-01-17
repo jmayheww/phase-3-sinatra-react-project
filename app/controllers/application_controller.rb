@@ -21,6 +21,17 @@ class ApplicationController < Sinatra::Base
                  })
   end
 
+  post '/trips' do
+    trip = Trip.create(
+      title: params[:title],
+      budget: params[:budget],
+      start_date: params[:start_date],
+      end_date: params[:end_date],
+      img: params[:img]
+    )
+    trip.to_json
+  end
+
   delete '/trips/:id' do
     trip_to_delete = Trip.find(params[:id])
     trip_to_delete.destroy
