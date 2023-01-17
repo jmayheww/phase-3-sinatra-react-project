@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
     user = User.create(
       name: params[:name]
     )
-    user.to_json
+    user.to_json(include: :users_trips)
   end
 
   post '/userstrips' do
@@ -49,6 +49,6 @@ class ApplicationController < Sinatra::Base
       user_id: params[:user_id],
       trip_id: params[:trip_id]
     )
-    userstrip.to_json
+    userstrip.to_json(include: :user)
   end
 end
