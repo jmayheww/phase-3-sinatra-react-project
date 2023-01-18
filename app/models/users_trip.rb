@@ -10,8 +10,16 @@ class UsersTrip < ActiveRecord::Base
     where(trip_id: id)
   end
 
+  def self.find_by_user_id(id)
+    where(user_id: id)
+  end
+
   def self.users_trips_by_creation
     order(created_at: :desc)
+  end
+
+  def show_trip_and_user_details
+    trip.include(:self.user)
   end
 
   def user_trip_confirmation_message

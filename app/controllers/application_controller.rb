@@ -21,8 +21,18 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/users_trips/:id' do
-    users_trips = UsersTrip.find_by_trip_id(params[:id])
-    users_trips.to_json(include: :user)
+    users_trips = UsersTrip.find_by_trip_id(params[:id]).order(created_at: :desc).limit(5)
+    users_trips.to_json(include: %i[user trip])
+  end
+
+  get '/users' do
+    users = User.show_in_order_of_creation
+    users.to_json(include: :users_trips)
+  end
+
+  get '/users/:id' do
+    user = User.find(params[:id])
+    user.to_json(include: :users_trips)
   end
 
   post '/trips' do
@@ -48,22 +58,6 @@ class ApplicationController < Sinatra::Base
     trip.to_json
   end
 
-  delete '/trips/:id' do
-    trip_to_delete = Trip.find(params[:id])
-    trip_to_delete.destroy
-    trip_to_delete.to_json
-  end
-
-  get '/users' do
-    users = User.show_in_order_of_creation
-    users.to_json(include: :users_trips)
-  end
-
-  get '/users/:id' do
-    user = User.find(params[:id])
-    user.to_json(include: :users_trips)
-  end
-
   post '/users' do
     user = User.create(
       name: params[:name]
@@ -77,5 +71,17 @@ class ApplicationController < Sinatra::Base
       trip_id: params[:trip_id]
     )
     userstrip.to_json(include: :user)
+  end
+
+  delete '/trips/:id' do
+    trip_to_delete = Trip.find(params[:id])
+    trip_to_delete.destroy
+    trip_to_delete.to_json
+  end
+
+  delete '/users_trips/:id' do
+    user_trip_to_delete = UsersTrip.find(params[:id])
+    user_trip_to_delete.destroy
+    user_trip_to_delete.to_json
   end
 end

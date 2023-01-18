@@ -30,4 +30,8 @@ class User < ActiveRecord::Base
   def trip_count
     all_trips.count
   end
+
+  def find_users_trip_by_trip_id(id)
+    users_trips.where(trip_id: id)
+  end
 end
