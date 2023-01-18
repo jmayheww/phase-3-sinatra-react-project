@@ -15,14 +15,30 @@ class ApplicationController < Sinatra::Base
 
   get '/trips/:id' do
     trip = Trip.find(params[:id])
-    puts trip
     trip.to_json(only: %i[title budget start_date end_date img id], include: {
                    users_trips: { include: :user }
                  })
   end
 
+  get '/users_trips/:id' do
+    users_trips = UsersTrip.find_by_trip_id(params[:id])
+    users_trips.to_json(include: :user)
+  end
+
   post '/trips' do
     trip = Trip.create(
+      title: params[:title],
+      budget: params[:budget],
+      start_date: params[:start_date],
+      end_date: params[:end_date],
+      img: params[:img]
+    )
+    trip.to_json
+  end
+
+  patch '/trips/:id' do
+    trip = Trip.find(params[:id])
+    trip.update(
       title: params[:title],
       budget: params[:budget],
       start_date: params[:start_date],

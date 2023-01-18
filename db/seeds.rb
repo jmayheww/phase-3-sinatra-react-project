@@ -18,7 +18,7 @@ num_users.times do
     budget: rand(0..100),
     start_date: Faker::Date.between(from: '2023-01-01', to: '2023-01-05'),
     end_date: Faker::Date.between(from: '2023-01-10', to: '2023-01-20'),
-    img: Faker::LoremFlickr.image(size: '50x60')
+    img: Faker::LoremFlickr.image(size: '300x200')
   )
 
   # create between 1 and 3 trips for each user

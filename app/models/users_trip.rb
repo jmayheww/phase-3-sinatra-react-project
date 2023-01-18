@@ -6,6 +6,10 @@ class UsersTrip < ActiveRecord::Base
     all.map { |usertrip| "#{usertrip.user.name} :  #{usertrip.trip.title}" }.sort
   end
 
+  def self.find_by_trip_id(id)
+    where(trip_id: id)
+  end
+
   def self.users_trips_by_creation
     order(created_at: :desc)
   end
